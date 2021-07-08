@@ -54,7 +54,13 @@ namespace LinkedListOperations
 
             }
         }
-
+        //Pop first Node
+        public void pop()
+        {
+            Console.WriteLine("\nPoped element is: {0}",head.data);
+            this.head = this.head.next;
+            Display();
+        }
         //Display Linked list Data
         public void Display()
         {

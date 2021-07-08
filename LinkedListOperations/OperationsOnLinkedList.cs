@@ -54,11 +54,23 @@ namespace LinkedListOperations
 
             }
         }
+        //Reuse UC1 method which returns Last node
+        public Node GetLastNode()
+        {
+            Node temp = this.head;
+            while (temp.next.next != null)
+            {
+                temp = temp.next;
+            }
+            return temp;
+        }
         //Pop first Node
         public void pop()
         {
-            Console.WriteLine("\nPoped element is: {0}",head.data);
-            this.head = this.head.next;
+            Console.WriteLine("\n*****Delete Last node*****");
+            Node temp = GetLastNode();
+            Console.WriteLine("Poped element is: {0}",temp.next.data);
+            temp.next=null;
             Display();
         }
         //Display Linked list Data

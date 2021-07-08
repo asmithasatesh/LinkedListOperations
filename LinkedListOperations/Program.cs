@@ -18,7 +18,7 @@ namespace LinkedListOperations
             obj.InsertInBetween(2, 30);
             obj.Display();
 
-            //Pop first Node
+            //Pop Last Node
             obj.pop();
         }
     }

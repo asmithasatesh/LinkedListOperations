@@ -6,7 +6,17 @@ namespace LinkedListOperations
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Linked List Program!");
+            //UseCase 1
+            OperationsOnLinkedList obj = new OperationsOnLinkedList();
+            //Insertion Operation
+            obj.InsertLast(56);
+            obj.InsertLast(30);
+            obj.InsertLast(70);
+            //Display Operation
+            Console.WriteLine("*****Insertion at Last*****");
+            obj.Display();
+
+
         }
     }
 }

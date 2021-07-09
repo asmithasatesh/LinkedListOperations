@@ -23,36 +23,15 @@ namespace LinkedListOperations
 
         }
         //Insert a node between two nodes
-        public void InsertInBetween(int position,int data)
+        public int InsertInBetween(int searchdata,int data)
         {
+            Node temp = SearchData(searchdata);
             Node newNode = new Node(data);
-            if(position==1)
-            {
-                newNode.next = this.head;
-                head = newNode;
-            }
-            else if(position < 1)
-            {
-                Console.WriteLine(" Value less than 1! Invalid Position.");
-            }
-            else if(position >0)
-            {
-                Node temp = head;
-                while(position >=0)
-                {
-                    if(position==2)
-                    {
-                        Console.WriteLine("\n******After inserting in between Two nodes***** ");
-                        newNode.next = temp.next;
-                        temp.next = newNode;
-                        break;
-                    }
-                    temp = temp.next;
-                    Console.WriteLine(position);
-                    position--;
-                }
+            newNode.next = temp.next;
+            temp.next = newNode;
+            Display();
+            return (newNode.data);
 
-            }
         }
         //Reuse UC1 method which returns Last node
         public Node GetLastNode()
@@ -87,7 +66,7 @@ namespace LinkedListOperations
         }
 
         //Search a particular data
-        public int SearchData(int value)
+        public Node SearchData(int value)
         {
             Node temp = head;
             int count = 1;
@@ -96,7 +75,7 @@ namespace LinkedListOperations
                 if(temp.data== value)
                 {
                     Console.WriteLine("\nFound {0} at index {1}", temp.data, count);
-                    return temp.data;
+                    return temp;
                 }
                 temp = temp.next;
                 count++;

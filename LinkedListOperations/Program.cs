@@ -7,7 +7,7 @@ namespace LinkedListOperations
         static void Main(string[] args)
         {
             Console.WriteLine("*****Insertion at First*****");
-            //UseCase 1
+
             OperationsOnLinkedList obj = new OperationsOnLinkedList();
             //Insertion Operation
             obj.InsertAtFirst(70);
@@ -20,6 +20,9 @@ namespace LinkedListOperations
 
             //Pop Last Node
             obj.pop();
+            //Search value 30
+            int searchValue = obj.SearchData(30);
+            Console.WriteLine(searchValue);
         }
     }
 }

@@ -8,56 +8,50 @@ namespace LinkedListOperations
     {
         public Node head;
         //Insert data to First
-        public void InsertAtFirst(int data)
+        public void Add(int data)
         {
             Node newNode = new Node(data);
-            if(this.head==null)
-            {
-                head = newNode;
-            }
-            else
+            Sorted(newNode);
+            Display();
+
+        }
+        public void Sorted(Node newNode)
+        {
+            Node temp = head;
+            if(temp==null || head.data >= newNode.data)
             {
                 newNode.next = head;
                 head = newNode;
             }
-
-        }
-        //Insert a node between two nodes
-        public int InsertInBetween(int searchdata,int data)
-        {
-            Node temp = SearchData(searchdata);
-            Node newNode = new Node(data);
-            newNode.next = temp.next;
-            temp.next = newNode;
-            Display();
-            return (newNode.data);
-
-        }
-        //Reuse UC1 method which returns Last node
-        public Node GetLastNode()
-        {
-            Node temp = this.head;
-            while (temp.next.next != null)
+            else if (head.next==null && head.data < newNode.data)
             {
-                temp = temp.next;
+                head.next = newNode;
             }
-            return temp;
+            else
+            {
+                if(temp.next.data> newNode.data)
+                {
+                    newNode.next = temp.next;
+                    temp.next = newNode;
+                }
+                else
+                {
+                    while(temp.next!=null && temp.next.data< newNode.data)
+                    {
+                        temp = temp.next;
+                    }
+                    newNode.next = temp.next;
+                    temp.next = newNode;
+
+                }
+            }
         }
-        //Pop first Node
-        public void pop()
-        {
-            Console.WriteLine("\n*****Delete Last node*****");
-            Node temp = GetLastNode();
-            Console.WriteLine("Poped element is: {0}",temp.next.data);
-            temp.next=null;
-            Display();
-        }
-        //Display Linked list Data
+
         public void Display()
         {
             int count = 1;
             Node temp = this.head;
-            Console.WriteLine("\n*****DISPLAYING LINKED LIST VALUES*****");
+            Console.WriteLine("\n*****DISPLAYING SORTED LINKED LIST VALUES*****");
             while (temp != null)
             {
                 Console.WriteLine("Element {0} of Linked List: {1} ",count,temp.data);
@@ -65,16 +59,7 @@ namespace LinkedListOperations
                 count++;
             }
         }
-        public int DeleteInBetween(int data)
-        {
-            Node temp = SearchData(data);
-            Console.WriteLine("\nData {0} has been deleted from linked list",temp.next.data);
-            temp.next = temp.next.next;
-            int sizeofList = SizeOfList();
-            Display();
-            return sizeofList;
 
-        }
         public int SizeOfList()
         {
             Node temp = head;

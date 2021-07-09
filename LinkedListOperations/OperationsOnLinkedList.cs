@@ -57,6 +57,7 @@ namespace LinkedListOperations
         {
             int count = 1;
             Node temp = this.head;
+            Console.WriteLine("\n*****DISPLAYING LINKED LIST VALUES*****");
             while (temp != null)
             {
                 Console.WriteLine("Element {0} of Linked List: {1} ",count,temp.data);
@@ -64,21 +65,38 @@ namespace LinkedListOperations
                 count++;
             }
         }
+        public int DeleteInBetween(int data)
+        {
+            Node temp = SearchData(data);
+            Console.WriteLine("\nData {0} has been deleted from linked list",temp.next.data);
+            temp.next = temp.next.next;
+            int sizeofList = SizeOfList();
+            Display();
+            return sizeofList;
 
+        }
+        public int SizeOfList()
+        {
+            Node temp = head;
+            int count = 0;
+            while(temp!=null)
+            {
+                count++;
+                temp = temp.next;
+            }
+            return count;
+        }
         //Search a particular data
         public Node SearchData(int value)
         {
             Node temp = head;
-            int count = 1;
             while(temp!=null)
             {
-                if(temp.data== value)
+                if(temp.next.data== value)
                 {
-                    Console.WriteLine("\nFound {0} at index {1}", temp.data, count);
                     return temp;
                 }
                 temp = temp.next;
-                count++;
             }
             Console.WriteLine("\nCould not find value in Linked List!");
             return default;

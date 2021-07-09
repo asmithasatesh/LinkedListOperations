@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LinkedListOperations
 {
-    class OperationsOnLinkedList
+    public class OperationsOnLinkedList
     {
         public Node head;
         //Insert data to First
@@ -23,42 +23,33 @@ namespace LinkedListOperations
 
         }
         //Insert a node between two nodes
-        public void InsertInBetween(int position,int data)
+        public int InsertInBetween(int searchdata,int data)
         {
+            Node temp = SearchData(searchdata);
             Node newNode = new Node(data);
-            if(position==1)
-            {
-                newNode.next = this.head;
-                head = newNode;
-            }
-            else if(position < 1)
-            {
-                Console.WriteLine(" Value less than 1! Invalid Position.");
-            }
-            else if(position >0)
-            {
-                Node temp = head;
-                while(position >=0)
-                {
-                    if(position==2)
-                    {
-                        Console.WriteLine("\n******After inserting in between Two nodes***** ");
-                        newNode.next = temp.next;
-                        temp.next = newNode;
-                        break;
-                    }
-                    temp = temp.next;
-                    Console.WriteLine(position);
-                    position--;
-                }
+            newNode.next = temp.next;
+            temp.next = newNode;
+            Display();
+            return (newNode.data);
 
+        }
+        //Reuse UC1 method which returns Last node
+        public Node GetLastNode()
+        {
+            Node temp = this.head;
+            while (temp.next.next != null)
+            {
+                temp = temp.next;
             }
+            return temp;
         }
         //Pop first Node
         public void pop()
         {
-            Console.WriteLine("\nPoped element is: {0}",head.data);
-            this.head = this.head.next;
+            Console.WriteLine("\n*****Delete Last node*****");
+            Node temp = GetLastNode();
+            Console.WriteLine("Poped element is: {0}",temp.next.data);
+            temp.next=null;
             Display();
         }
         //Display Linked list Data
@@ -72,6 +63,25 @@ namespace LinkedListOperations
                 temp = temp.next;
                 count++;
             }
+        }
+
+        //Search a particular data
+        public Node SearchData(int value)
+        {
+            Node temp = head;
+            int count = 1;
+            while(temp!=null)
+            {
+                if(temp.data== value)
+                {
+                    Console.WriteLine("\nFound {0} at index {1}", temp.data, count);
+                    return temp;
+                }
+                temp = temp.next;
+                count++;
+            }
+            Console.WriteLine("\nCould not find value in Linked List!");
+            return default;
         }
     }
 }

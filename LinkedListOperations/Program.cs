@@ -6,20 +6,19 @@ namespace LinkedListOperations
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("*****Insertion at First*****");
-            //UseCase 1
+
+
             OperationsOnLinkedList obj = new OperationsOnLinkedList();
             //Insertion Operation
+            Console.WriteLine("*****Insertion at First*****");
             obj.InsertAtFirst(70);
+            obj.InsertAtFirst(30);
             obj.InsertAtFirst(56);
-
-            //Display Operation
             obj.Display();
-            obj.InsertInBetween(2, 30);
-            obj.Display();
+            //Usecase 8
+            int value=obj.InsertInBetween(30, 40);
+            Console.WriteLine("Inserted Value {0} to linked List", value);
 
-            //Pop first Node
-            obj.pop();
         }
     }
 }
